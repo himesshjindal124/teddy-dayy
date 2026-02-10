@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ultra Legendary Teddy Day 🧸❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:'Comic Sans MS', cursive;
+  background: radial-gradient(circle at top,#0f2027,#203a43,#2c5364);
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+}
+
+.page{display:none;padding:20px;}
+.active{display:block;}
+
+h1,h2{
+  text-shadow:0 0 25px hotpink;
+}
+
+input{
+  padding:12px;
+  width:80%;
+  border-radius:25px;
+  border:none;
+  font-size:16px;
+}
+
+button{
+  padding:12px 30px;
+  font-size:18px;
+  border:none;
+  border-radius:30px;
+  margin:10px;
+  cursor:pointer;
+}
+
+#yesBtn{
+  background:linear-gradient(45deg,#ff0080,#ff8c00);
+  color:white;
+  box-shadow:0 0 30px #ff0080;
+  transition:0.3s;
+}
+
+#noBtn{
+  background:white;
+  color:#ff0080;
+  position:absolute;
+}
+
+.teddy{
+  font-size:90px;
+  animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-25px);}
+}
+
+/* Floating magic */
+.magic{
+  position:absolute;
+  font-size:32px;
+  animation:float 8s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(110vh);}
+  to{transform:translateY(-10vh);}
+}
+
+/* Photo frame */
+.photo{
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  border:6px solid pink;
+  box-shadow:0 0 30px hotpink;
+  animation:heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.08);}
+  100%{transform:scale(1);}
+}
+
+/* Letter */
+#letter{
+  background:white;
+  color:#ff0080;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 0 30px pink;
+}
+
+/* Confetti */
+.confetti{
+  position:fixed;
+  width:8px;
+  height:8px;
+  animation:fall 3s linear infinite;
+}
+
+@keyframes fall{
+  from{top:-10px;}
+  to{top:110vh;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2023/03/02/audio_1c9c1db7e1.mp3">
+</audio>
+
+<!-- FLOATING MAGIC -->
+<div class="magic" style="left:5%">🧸</div>
+<div class="magic" style="left:15%;animation-delay:1s;">❤️</div>
+<div class="magic" style="left:30%;animation-delay:2s;">✨</div>
+<div class="magic" style="left:45%;animation-delay:3s;">🎀</div>
+<div class="magic" style="left:60%;animation-delay:4s;">🧿</div>
+<div class="magic" style="left:75%;animation-delay:5s;">💖</div>
+<div class="magic" style="left:90%;animation-delay:6s;">🫶</div>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <div class="teddy">🧸</div>
+  <h1>Ultra Teddy Day Lock 🔐</h1>
+  <p>Only for one special girl ❤️</p>
+  <input id="nameInput" placeholder="Enter secret name">
+  <br><br>
+  <button onclick="checkName()">Unlock Love 💖</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <img src="geetika.jpg" class="photo"><br><br>
+  <h2>For you Geetika 🧸❤️</h2>
+  <p>
+    Will you accept this teddy & be my favourite person forever? 🥹
+  </p>
+  <button id="yesBtn" onclick="openLetter()">YES 😍</button>
+  <button id="noBtn" onmouseover="moveNo()">NO 🙈</button>
+</div>
+
+<!-- LETTER -->
+<div class="page" id="pageLetter">
+  <div id="letter">
+    <h2>One heart thing 💌</h2>
+    <p id="type"></p>
+    <button onclick="finalYes()">Open Final Surprise 🧸</button>
+  </div>
+</div>
+
+<!-- FINAL -->
+<div class="page" id="page3">
+  <div class="teddy">🧸💖</div>
+  <h1>Happy Teddy Day to my gubara don 💝</h1>
+  <p style="font-size:18px;">
+    meri babu baut strong h 😘😍❤️<br>
+    love u re bche ❤️😘🧿<br>
+    thanku so much for coming in my life 💖<br>
+    ab bakwas na krna ki tu aya tha life m<br>
+    maruga bhi 😤❤️
+  </p>
+</div>
+
+<script>
+function checkName(){
+  let n=document.getElementById("nameInput").value.toLowerCase();
+  if(n==="geetika"||n==="geetika bansal"){
+    show("page2");
+  }else{
+    alert("❌ Access denied. This love is reserved 🧸❤️");
+  }
+}
+
+function show(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+let size=1;
+function moveNo(){
+  let no=document.getElementById("noBtn");
+  no.style.left=Math.random()*80+"%";
+  no.style.top=Math.random()*80+"%";
+  size+=0.25;
+  document.getElementById("yesBtn").style.transform=`scale(${size})`;
+}
+
+function openLetter(){
+  show("pageLetter");
+  typeText();
+}
+
+let text="Ye teddy meri taraf se wada hai… main hamesha tera saath dunga, hamesha tera ban ke ❤️🧸";
+let i=0;
+function typeText(){
+  if(i<text.length){
+    document.getElementById("type").innerHTML+=text.charAt(i);
+    i++;
+    setTimeout(typeText,50);
+  }
+}
+
+function finalYes(){
+  show("page3");
+  for(let i=0;i<150;i++){
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  }
+}
+</script>
+
+</body>
+</html>
